@@ -58,17 +58,6 @@ pipeline {
         failure {
             echo 'Pipeline failed. Check the logs for more details.'
         }
-        cleanup {
-            steps {
-                echo 'Cleaning up running application...'
-                sh '''
-                if [ -f ${WORKSPACE}/python-app-deploy/app.pid ]; then
-                    kill $(cat ${WORKSPACE}/python-app-deploy/app.pid) || true
-                    rm ${WORKSPACE}/python-app-deploy/app.pid
-                fi
-                '''
-            }
-        }
     }
 }
 
